@@ -3,7 +3,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-//const sequelize = require('./util/database');
 const cors = require("cors");
 const path = require("path");
 
@@ -16,8 +15,8 @@ const path = require("path");
 //routes
 const mainpageroute = require("./routes/mainpageroute");
 const user = require("./routes/user");
-// const expenseroute = require('./routes/expense')
-// const purchase = require('./routes/purchase')
+const expenseroute = require("./routes/expense");
+const purchase = require("./routes/purchase");
 // const resetpassword = require('./routes/resetpassword')
 
 //middlewares
@@ -30,8 +29,8 @@ app.use(express.static(path.join(__dirname, "public")));
 //redirection
 app.use(mainpageroute);
 app.use("/user", user);
-// app.use('/expense', expenseroute)
-// app.use('/purchase', purchase)
+app.use("/expense", expenseroute);
+app.use("/purchase", purchase);
 // app.use('/password', resetpassword)
 
 // Define associations
