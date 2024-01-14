@@ -16,6 +16,7 @@ const usersSchema = new Schema({
   },
   ispremiumuser: Boolean,
   totalExpenses: Number,
+  expenses: [{ type: Schema.Types.ObjectId, ref: "expense" }],
 });
 
 module.exports = mongoose.model("users", usersSchema);
