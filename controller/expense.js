@@ -35,7 +35,6 @@ async function uploadToS3(stringfyexpense, filename) {
 exports.getexpense = async (req, res) => {
   try {
     const result = await expense.find({ userId: req.userId.userid }).exec();
-
     res.send(result);
   } catch (err) {
     console.error(err);
@@ -46,17 +45,13 @@ exports.getexpense = async (req, res) => {
 exports.postexpense = async (req, res) => {
   try {
     const { amount, description, category } = req.body;
-    console.log(typeof amount);
     const userId = req.userId.userid;
-
     const user = await User.findById(userId);
-
     if (!user) {
       return res
         .status(404)
         .json({ success: false, message: "User not found" });
     }
-
     const newExpense = new expense({
       amount,
       description,
@@ -105,18 +100,23 @@ exports.leaderboard = async (req, res) => {
   }
 };
 
-// exports.downloadExpenses = async (req, res) => {
-//   try {
-//     const data = await expense.findAll({
-//       where: { userId: req.userId.userid },
-//     });
-//     const stringfyexpense = JSON.stringify(data);
-//     const userId = req.userId.userid;
-//     const filename = `Expense${userId}/${new Date()}.txt`;
-//     const fileurl = await uploadToS3(stringfyexpense, filename);
-//     res.status(201).json({ fileurl, success: true });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ success: false, message: "An error occurred" });
-//   }
-// };
+exports.downloadExpenses = async (req, res) => {
+  try {
+    const dexpenses = await expense.find({ userId: req.userId.userid });
+
+    if (!dexpenses || dexpenses.length === 0) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Expenses not found" });
+    }
+
+    const stringifiedExpenses = JSON.stringify(dexpenses);
+    const userId = req.userId.userid;
+    const filename = `Expense${userId}/${new Date().toISOString()}.json`;
+    const fileUrl = await uploadToS3(stringifiedExpenses, filename);
+    res.status(201).json({ fileUrl, success: true });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "An error occurred" });
+  }
+};

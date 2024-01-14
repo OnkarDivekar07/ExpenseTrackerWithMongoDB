@@ -20,7 +20,11 @@ router.delete(
   Controller.deleteexpense
 );
 
-//router.get('/download', userauthenticate.verifyToken, Controller.downloadExpenses)
+router.get(
+  "/download",
+  userauthenticate.verifyToken,
+  Controller.downloadExpenses
+);
 
 router.get(
   "/leaderboard",
