@@ -22,6 +22,10 @@ router.delete(
 
 //router.get('/download', userauthenticate.verifyToken, Controller.downloadExpenses)
 
-//router.get('/leaderboard', userauthenticate.verifyToken, Controller.leaderboard)
+router.get(
+  "/leaderboard",
+  userauthenticate.verifyToken,
+  Controller.leaderboard
+);
 
 module.exports = router;

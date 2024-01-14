@@ -46,6 +46,7 @@ exports.getexpense = async (req, res) => {
 exports.postexpense = async (req, res) => {
   try {
     const { amount, description, category } = req.body;
+    console.log(typeof amount);
     const userId = req.userId.userid;
 
     const user = await User.findById(userId);
@@ -96,7 +97,7 @@ exports.leaderboard = async (req, res) => {
     const leaderboardData = await User.find({})
       .select("_id Name totalExpenses")
       .sort({ totalExpenses: -1 });
-
+    console.log();
     res.json(leaderboardData);
   } catch (error) {
     console.error(error);
