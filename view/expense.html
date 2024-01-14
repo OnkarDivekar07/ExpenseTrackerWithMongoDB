@@ -1,0 +1,105 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <title>Expense App</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="\pics\Your paragraph text.png" alt="Logo" width="60" height="60" class="d-inline-block align-top">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/user">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/purchase/downloadreport">Report</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/purchase/leaderboard">Leaderboard</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="/purchase/premiummembership">Premium Membership</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <div class="card bg-primary text-white">
+            <div class="card-body">
+                <form class="bg-primary p-3 rounded" id="form">
+                    <div class="row mb-3">
+                        <div class="col-md-4">
+                            <label for="amount" class="form-label text-black border-bottom border-dark">Amount
+                                (₹)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">₹</span>
+                                <input type="number" id="amount" name="amount" class="form-control" required />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="description"
+                                class="form-label text-black border-bottom border-dark">Description</label>
+                            <input type="text" id="description" name="description" class="form-control" required />
+                        </div>
+                        <div class="col-md-4">
+                            <label for="catogary"
+                                class="form-label text-black border-bottom border-dark">Category</label>
+                            <select id="catogary" class="form-select" name="catogary" required>
+                                <option selected disabled>Select expense Category</option>
+                                <option>Home</option>
+                                <option>Fuel</option>
+                                <option>Groceries</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-light" id="button" data-id="">AddExpense</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+        <div class="table-container">
+            <table id="userTable" class="table table table-dark table-borderless" style="background-color: #f0f8ff;">
+                <thead class="blue-bg">
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Category</th>
+                        <th></th>
+                        <!-- You can add more headers if needed -->
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    <!-- User data rows will be added here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination-controls text-center mt-4">
+            <button id="prevPageButton" class="btn btn-primary">Previous</button>
+            <span>Page <span id="currentPage">1</span> of <span id="totalPages">1</span></span>
+            <button id="nextPageButton" class="btn btn-primary">Next</button>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js"></script>
+    <script src="/js/expense.js"></script>
+</body>
+
+</html>
