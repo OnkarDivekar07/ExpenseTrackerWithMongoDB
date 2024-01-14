@@ -91,19 +91,18 @@ exports.deleteexpense = async (req, res) => {
   }
 };
 
-// exports.leaderboard = async (req, res) => {
-//   try {
-//     const leaderboardData = await userdetailstable.findAll({
-//       attributes: ["id", "Name", "totalExpenses"],
-//       order: [["totalExpenses", "DESC"]],
-//     });
+exports.leaderboard = async (req, res) => {
+  try {
+    const leaderboardData = await User.find({})
+      .select("_id Name totalExpenses")
+      .sort({ totalExpenses: -1 });
 
-//     res.json(leaderboardData);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ success: false, message: "An error occurred" });
-//   }
-// };
+    res.json(leaderboardData);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, message: "An error occurred" });
+  }
+};
 
 // exports.downloadExpenses = async (req, res) => {
 //   try {

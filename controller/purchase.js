@@ -46,19 +46,14 @@ exports.purchasepremium = async (req, res) => {
 exports.updatetranctionstatus = async (req, res) => {
   try {
     const { payment_id, order_id } = req.body;
-
-    // Assuming you have a Mongoose Order model
     const order = await Order.findOne({ orderid: order_id });
 
     if (order) {
-      // Update Order document
       await order.updateOne({ paymentid: payment_id, status: "successful" });
 
-      // Assuming you have a Mongoose User model
       const user = await User.findOne({ _id: req.userId.userid });
 
       if (user) {
-        // Update User document
         await user.updateOne({ ispremiumuser: true });
 
         return res

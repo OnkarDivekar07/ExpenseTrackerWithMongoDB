@@ -87,11 +87,11 @@ exports.updatetoken = async (req, res) => {
     const decodedToken = jwt.verify(token, process.env.secretKey);
 
     const user = await User.findOne({
-      where: { id: decodedToken.userid },
+      _id: decodedToken.userid,
     });
 
     if (user) {
-      const newToken = genrateAcesstoken(user.id, user.ispremiumuser);
+      const newToken = genrateAcesstoken(user._id, user.ispremiumuser);
 
       return res.json({
         success: true,
