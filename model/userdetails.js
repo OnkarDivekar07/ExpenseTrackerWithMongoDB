@@ -18,6 +18,7 @@ const usersSchema = new Schema({
   totalExpenses: Number,
   expenses: [{ type: Schema.Types.ObjectId, ref: "expense" }],
   orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
+  Forgotpasswords: [{ type: Schema.Types.ObjectId, ref: "Forgotpassword" }],
 });
 
 module.exports = mongoose.model("users", usersSchema);

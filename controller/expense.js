@@ -34,7 +34,7 @@ async function uploadToS3(stringfyexpense, filename) {
 
 exports.getexpense = async (req, res) => {
   try {
-    const result = await expense.find({ userId: req.userId.userid }).exec();
+    const result = await expense.find({ userId: req.userId.userid });
     res.send(result);
   } catch (err) {
     console.error(err);
@@ -112,7 +112,7 @@ exports.downloadExpenses = async (req, res) => {
 
     const stringifiedExpenses = JSON.stringify(dexpenses);
     const userId = req.userId.userid;
-    const filename = `Expense${userId}/${new Date().toISOString()}.json`;
+    const filename = `Expense${userId}/${new Date().toISOString()}.txt`;
     const fileUrl = await uploadToS3(stringifiedExpenses, filename);
     res.status(201).json({ fileUrl, success: true });
   } catch (error) {
