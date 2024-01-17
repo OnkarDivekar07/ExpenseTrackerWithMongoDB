@@ -11,7 +11,6 @@ async function saveExpense(event) {
   const amount = parseInt(event.target.amount.value, 10);
   const description = event.target.description.value;
   const category = event.target.catogary.value;
-  console.log(typeof amount);
   const expenseData = {
     amount,
     description,
