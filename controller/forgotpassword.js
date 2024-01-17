@@ -107,7 +107,6 @@ exports.updatepassword = async (req, res) => {
         const hash = await bcrypt.hash(newpassword, saltRounds);
 
         await user.updateOne({ password: hash });
-        await resetpasswordrequest.updateOne({ active: false });
 
         return res
           .status(201)

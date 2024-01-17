@@ -92,7 +92,6 @@ exports.leaderboard = async (req, res) => {
     const leaderboardData = await User.find({})
       .select("_id Name totalExpenses")
       .sort({ totalExpenses: -1 });
-    console.log();
     res.json(leaderboardData);
   } catch (error) {
     console.error(error);
@@ -103,7 +102,6 @@ exports.leaderboard = async (req, res) => {
 exports.downloadExpenses = async (req, res) => {
   try {
     const dexpenses = await expense.find({ userId: req.userId.userid });
-
     if (!dexpenses || dexpenses.length === 0) {
       return res
         .status(404)
